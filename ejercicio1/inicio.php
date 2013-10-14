@@ -14,7 +14,6 @@ $query = mysql_query('SELECT * from peliculas', $conexion);
 	<?php include "menu.php"; ?>
 	<h1>Peliculas</h1>
 	
-	<a href="pelicula.php?nombre=TruchoNoDejaDeHablar">Enviar variable</a>
 	
 	<?php
 	while($reglon = mysql_fetch_array($query)){
@@ -25,6 +24,9 @@ $query = mysql_query('SELECT * from peliculas', $conexion);
 		WHERE peliculas_directores.id_pelicula='" . $reglon["id"] . "'" , $conexion);
 		
 		echo "<h2>" . $reglon["titulo"] . "</h2>";
+		
+		echo "<a href='pelicula.php?id=" . $reglon["id"] . "'>Ver</a>";
+		
 		while($reglon2 = mysql_fetch_array($query2)){
 			echo "<p>" . $reglon2["nombre"] . "</p>";
 		}
