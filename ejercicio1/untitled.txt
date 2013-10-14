@@ -1,0 +1,10 @@
+if (!$conexion) {
+    die('No pudo conectarse: ' . mysql_error());
+}
+echo 'Conectado satisfactoriamente';
+mysql_close($conexion); 
+
+
+if(2=2){
+	echo "iguales";
+}

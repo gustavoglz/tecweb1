@@ -1,0 +1,30 @@
+body{
+	background:#c4c4c4;
+}
+
+#menu ul li{
+	list-style: none;
+	display:inline-block;
+	margin:10px;
+}
+#menu ul {
+	margin:0;
+	padding:0;
+}
+#menu ul li a{
+	text-decoration: none;
+	display:inline-block;
+	padding:10px;
+	color:black;
+	background:#999;
+}
+#menu ul li a:hover{
+	background:black;
+	color:white;
+}
+
+.generos_style{
+	font-size:12px;
+	font-weight:bold;
+	color:#c20;
+}
