@@ -20,40 +20,61 @@ $query = mysql_query('SELECT * from peliculas', $conexion);
 		<p><input type="submit" value="Pasar variable"></p>
 	</form>
 	
-	<?php
-	while($reglon = mysql_fetch_array($query)){
+	<table border="1">
+		<tr>
+			<td>Título</td>
+			<td>Sinopsis</td>
+			<td>Fecha de Estreno</td>
+			<td>Director</td>
+			<td>Género</td>
+			<td>Ver</td>
+			<td>Editar</td>
+			<td>Eliminar</td>
+		</tr>
 		
-		$query2  = mysql_query("SELECT directores.id, directores.nombre
-		FROM directores INNER JOIN peliculas_directores
-		ON peliculas_directores.id_director=directores.id
-		WHERE peliculas_directores.id_pelicula='" . $reglon["id"] . "'" , $conexion);
+		<?php
+		while($reglon = mysql_fetch_array($query)){
+			echo "<tr>";
+			$query2  = mysql_query("SELECT directores.id, directores.nombre
+			FROM directores INNER JOIN peliculas_directores
+			ON peliculas_directores.id_director=directores.id
+			WHERE peliculas_directores.id_pelicula='" . $reglon["id"] . "'" , $conexion);
 		
-		echo "<h2>" . $reglon["titulo"] . "</h2>";
+			echo "<td>" . $reglon["titulo"] . "</td>";
+			echo "<td>" . $reglon["sinopsis"] . "</td>";
+			echo "<td>" . $reglon["fecha_estreno"] . "</td>";
+			
+			echo "<td>";
+			while($reglon2 = mysql_fetch_array($query2)){
+				echo  $reglon2["nombre"] . " ";
+			}
+			echo "</td>";
+			$query3  = mysql_query("SELECT generos.id, generos.nombre
+			FROM generos INNER JOIN peliculas_generos
+			ON peliculas_generos.id_genero=generos.id
+			WHERE peliculas_generos.id_pelicula='" . $reglon["id"] . "'" , $conexion);
+			
+			echo "<td>";
+			while($reglon3 = mysql_fetch_array($query3)){
+				echo $reglon3["nombre"] . " ";
+			}
+			echo "</td>";
+			
 		
-		echo "<a href='pelicula.php?id=" . $reglon["id"] . "'>Ver</a>";
+			echo "<td><a href='pelicula.php?id=" . $reglon["id"] . "'>Ver</a></td>";
+			echo "<td>Editar</td>";
+			echo "<td><a href='borrar.php?id=". $reglon['id'] . "' >eliminar</a></td>";
 		
-		while($reglon2 = mysql_fetch_array($query2)){
-			echo "<p>" . $reglon2["nombre"] . "</p>";
+			echo "</tr>";
 		}
-		
-		$query3  = mysql_query("SELECT generos.id, generos.nombre
-		FROM generos INNER JOIN peliculas_generos
-		ON peliculas_generos.id_genero=generos.id
-		WHERE peliculas_generos.id_pelicula='" . $reglon["id"] . "'" , $conexion);
-		
-		while($reglon3 = mysql_fetch_array($query3)){
-			echo "<p class='generos_style'>" . $reglon3["nombre"] . "</p>";
-		}
-		
-		echo "<p>" . $reglon["fecha_estreno"] . "</p>";
-		echo "<p>" . $reglon["sinopsis"] . "</p>";
-		
-		echo "<a href='borrar.php?id=". $reglon['id'] . "' >eliminar</a>";
-		
-		
-	}
 	
-	?>
+		?>
+		
+		
+		
+	</table>
+	
+	
 	
 </body>
 </html>
