@@ -8,3 +8,5 @@ mysql_close($conexion);
 if(2=2){
 	echo "iguales";
 }
+
+
