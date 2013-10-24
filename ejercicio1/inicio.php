@@ -14,6 +14,11 @@ $query = mysql_query('SELECT * from peliculas', $conexion);
 	<?php include "menu.php"; ?>
 	<h1>Peliculas</h1>
 	
+	<form action="insertar.php" method="POST">
+		<input type="text" name="titulo" value="" id="titulo">
+	
+		<p><input type="submit" value="Pasar variable"></p>
+	</form>
 	
 	<?php
 	while($reglon = mysql_fetch_array($query)){
@@ -42,6 +47,8 @@ $query = mysql_query('SELECT * from peliculas', $conexion);
 		
 		echo "<p>" . $reglon["fecha_estreno"] . "</p>";
 		echo "<p>" . $reglon["sinopsis"] . "</p>";
+		
+		echo "<a href='borrar.php?id=". $reglon['id'] . "' >eliminar</a>";
 		
 		
 	}
