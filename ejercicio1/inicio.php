@@ -20,7 +20,7 @@ $query = mysql_query('SELECT * from peliculas', $conexion);
 		<p><input type="submit" value="Pasar variable"></p>
 	</form>
 	
-	<table border="1">
+	<table border="1" width="900">
 		<tr>
 			<td>Título</td>
 			<td>Sinopsis</td>
@@ -49,6 +49,7 @@ $query = mysql_query('SELECT * from peliculas', $conexion);
 				echo  $reglon2["nombre"] . " ";
 			}
 			echo "</td>";
+			
 			$query3  = mysql_query("SELECT generos.id, generos.nombre
 			FROM generos INNER JOIN peliculas_generos
 			ON peliculas_generos.id_genero=generos.id
